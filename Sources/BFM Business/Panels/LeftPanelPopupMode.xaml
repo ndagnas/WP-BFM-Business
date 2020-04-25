@@ -1,0 +1,47 @@
+﻿<controls:UserControl x:Class="NextRadio.Popups.LeftPanelPopupMode"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+		xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows"
+		xmlns:localPhoneControls="clr-namespace:System.Windows.Phone.Controls"
+		xmlns:systemWindowsPhoneControls="clr-namespace:System.Windows.Phone.Controls"
+		FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White" mc:Ignorable="d" d:DesignWidth="580" d:DesignHeight="580" toolkit:TiltEffect.IsTiltEnabled="True">
+
+	<Grid Margin="-1,0,-1,-1" Background="#C0000000">
+		<ScrollViewer>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="*" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<toolkit:WrapPanel x:Name="Layout" Margin="1,0,1,1">
+					<localPhoneControls:TileButton Background="#FFF08C00" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.All"          Title="TOUTE&#13;L'ACTUALIT&#201;" />
+					<localPhoneControls:TileButton Background="#FF4684EE" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.France"       Title="FRANCE" />
+					<localPhoneControls:TileButton Background="#FFDC3912" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.World"        Title="MONDE" />
+					<localPhoneControls:TileButton Background="#FFFF9900" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Employment"   Title="EMPLOI" />
+					<localPhoneControls:TileButton Background="#FF008000" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.YourMoney"    Title="VOTRE&#13;ARGENT" />
+					<localPhoneControls:TileButton Background="#FF666666" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Innovation"   Title="INNOVATION&#13;TECH&#13;T&#201;L&#201;COM" />
+					<localPhoneControls:TileButton Background="#FF4942CC" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Construction" Title="IMMOBILIER&#13;BTP" />
+					<localPhoneControls:TileButton Background="#FFCB4AC5" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Banking"      Title="ASSURANCE&#13;BANQUE" />
+					<localPhoneControls:TileButton Background="#FFD6AE00" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Culture"      Title="CULTURE&#13;LOISIRS&#13;M&#201;DIAS" />
+					<localPhoneControls:TileButton Background="#FF336699" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Sport"        Title="SPORT&#13;BUSINESS" />
+					<localPhoneControls:TileButton Background="#FFDD4477" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Energy"       Title="ENERGIE&#13;GREEN&#13;BUSINESS" />
+					<localPhoneControls:TileButton Background="#FFAAAA11" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Distribution" Title="CONSOMMA-&#13;TION&#13;DISTRIBUTION" />
+					<localPhoneControls:TileButton Background="#FF66AA00" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Transport"    Title="AUTOMOBILE&#13;TRANSPORT" />
+					<localPhoneControls:TileButton Background="#FF888888" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Tourism"      Title="LUXE&#13;TOURISME" />
+					<localPhoneControls:TileButton Background="#FF994499" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Industry"     Title="INDUSTRIE&#13;MATI&#200;RES&#13;PREMI&#200;RES" />
+					<localPhoneControls:TileButton Background="#FFDD5511" Source="/BFM_Business;component/Images/Icons/actuality.png" Width="140" Click="OnSectionClick" Tag="SectionType.Observatory"  Title="L&#39;OBSERVA-&#13;TOIRE" />
+					<localPhoneControls:TileButton Background="#FFD84182" Source="/BFM_Business;component/Images/Icons/bookmarks.png" Width="140" Click="OnSectionClick" Tag="SectionType.Bookmarks"    Title="MES FAVORIS" />
+				</toolkit:WrapPanel>
+
+				<Grid x:Name="AdContainer" Grid.Row="2" Width="480" Height="80" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+				</Grid>
+
+				<systemWindowsPhoneControls:ApplicationButton Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Source="/Images/Application/options.png" Margin="8" Click="OnOptionsButtonClick" />
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</controls:UserControl>

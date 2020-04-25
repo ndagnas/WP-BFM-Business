@@ -1,0 +1,144 @@
+﻿<phone:PhoneApplicationPage x:Class="NextRadio.Frames.Frm_Player"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+		xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+		xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+		xmlns:localControls="clr-namespace:NextRadio.Frames"
+		SupportedOrientations="PortraitOrLandscape" shell:SystemTray.IsVisible="false" Loaded="OnLoaded">
+
+	<phone:PhoneApplicationPage.Resources>
+		<Style TargetType="localControls:PlayerButton">
+			<Setter Property="Width" Value="100" />
+			<Setter Property="Height" Value="100" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="localControls:PlayerButton">
+						<Grid CacheMode="BitmapCache" Background="Transparent">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="MouseOver">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Grid x:Name="LayoutButton">
+								<Ellipse Stroke="{TemplateBinding BorderBrush}" StrokeThickness="5" />
+								<Ellipse x:Name="ButtonBackground" Fill="{TemplateBinding BorderBrush}" Opacity="0" />
+								<ContentPresenter />
+							</Grid>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style TargetType="localControls:QualityButton">
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="localControls:QualityButton">
+						<Grid CacheMode="BitmapCache" Background="Transparent">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="MouseOver">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutButton" />
+											<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonBackground" />
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Grid x:Name="LayoutButton" Margin="5" Width="120" Height="40" Background="{TemplateBinding Background}">
+								<Rectangle Stroke="{TemplateBinding BorderBrush}" StrokeThickness="5" />
+								<Rectangle x:Name="ButtonBackground" Fill="{TemplateBinding BorderBrush}" Opacity="0" />
+								<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,0" FontWeight="Bold" Text="{TemplateBinding Content}" />
+							</Grid>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</phone:PhoneApplicationPage.Resources>
+
+	<Grid Background="Black" x:Name="Layout" Tap="OnLayoutTap">
+		<Border x:Name="LiveAudioContainer" />
+		<Border x:Name="LiveMediaContainer" />
+		<Grid x:Name="ProgressControl" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="4" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<toolkit:PerformanceProgressBar Grid.Row="0" x:Name="ProgressBar" Foreground="White" />
+			<TextBlock Grid.Row="1" FontFamily="Segoe UI" FontSize="20" Foreground="White" TextAlignment="Center" Margin="0,8,0,0" Text="Chargement du direct..." />
+		</Grid>
+		<Grid Background="#9F000000" x:Name="LayoutControls" VerticalAlignment="Bottom" Height="120" Margin="-2,0">
+			<Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<localControls:QualityButton x:Name="QualityButtonL1" Grid.Row="0" Grid.Column="0" Content="-" Click="OnQualityButtonClick" />
+				<localControls:QualityButton x:Name="QualityButtonL2" Grid.Row="0" Grid.Column="1" Content="-" Click="OnQualityButtonClick" />
+				<localControls:QualityButton x:Name="QualityButtonL3" Grid.Row="1" Grid.Column="0" Content="-" Click="OnQualityButtonClick" />
+				<localControls:QualityButton x:Name="QualityButtonL4" Grid.Row="1" Grid.Column="1" Content="-" Click="OnQualityButtonClick" />
+			</Grid>
+			<localControls:PlayerButton x:Name="PauseLiveAppBarButton" Width="60" Height="60" HorizontalAlignment="Right" Margin="0,0,22,0" Visibility="Collapsed" Click="OnPauseButtonClick">
+				<Grid>
+					<Rectangle Height="23" Width="7" Fill="White" Margin="0,0,13,0" />
+					<Rectangle Height="23" Width="7" Fill="White" Margin="13,0,0,0" />
+				</Grid>
+			</localControls:PlayerButton>
+			<localControls:PlayerButton x:Name="PlayLiveAppBarButton" Width="60" Height="60" HorizontalAlignment="Right" Margin="0,0,22,0" IsEnabled="False" Click="OnPlayButtonClick">
+				<Polygon Points="3,0 17,14 3,28" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="White"/>
+			</localControls:PlayerButton>
+		</Grid>
+	</Grid>
+</phone:PhoneApplicationPage>

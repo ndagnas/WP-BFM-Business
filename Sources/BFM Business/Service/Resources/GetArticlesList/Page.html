@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+ <head>
+  <style type="text/css">[STYLE]</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>{0}</title>
+ </head>
+ <script type="text/javascript">
+  function loadImage(self,src){{var img=new Image();img.onload=function(){{self.src=img.src;}};img.src=src;}}
+  function loadImages(){{var images=document.getElementsByTagName("IMG");for(var id=0;id<images.length;id ++){{var self=images[id];var src=self.getAttribute("icon");if(src!=null && src.length>0)loadImage(self,src);}}}}
+  function insertArticles(value){{document.getElementById("articles-list").innerHTML = value; loadImages();}}
+ </script>
+ <body class="articles" onload="loadImages()">
+  <ul id="articles-list">
+   <!-- DEBUT DE LA LISTE -->
+
+{1}
+   <!-- FIN DE LA LISTE -->
+  </ul>
+{2} </body>
+</html>

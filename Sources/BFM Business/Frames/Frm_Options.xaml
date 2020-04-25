@@ -1,0 +1,157 @@
+﻿<phone:PhoneApplicationPage x:Class="NextRadio.Frames.Frm_Options"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+		xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+		xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+		xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows"
+		xmlns:localControls="clr-namespace:NextRadio.Frames"
+		xmlns:systemWindowsPhoneControls="clr-namespace:System.Windows.Phone.Controls"
+		FontFamily="Segoe UI Semibold" FontSize="20" Foreground="White" SupportedOrientations="PortraitOrLandscape" shell:SystemTray.IsVisible="false" Loaded="OnLoaded">
+
+	<phone:PhoneApplicationPage.Resources>
+		<Style TargetType="localControls:AppButton">
+			<Setter Property="Width" Value="144" />
+			<Setter Property="Height" Value="174" />
+			<Setter Property="Margin" Value="0,0,12,12" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="localControls:AppButton">
+						<Grid CacheMode="BitmapCache">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="144" />
+								<RowDefinition Height="6" />
+								<RowDefinition Height="24" />
+							</Grid.RowDefinitions>
+							<Image Grid.Row="0" Width="144" Height="144" Source="/BFM_Business;component/Images/background.png" />
+							<Image Grid.Row="0" Width="144" Height="144" Source="{TemplateBinding Source}" />
+							<TextBlock Grid.Row="2" FontFamily="Segoe UI Semibold" Foreground="White" FontSize="18" Text="{TemplateBinding Content}" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</phone:PhoneApplicationPage.Resources>
+	
+	<Grid Background="#FF31353E">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Column="1" Grid.Row="0" Background="{StaticResource ApplicationBackground}" Height="{Binding Path=SystemBarHeight, Source={StaticResource DeviceInfos}}">
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{Binding Path=TextHeight, Source={StaticResource DeviceInfos}}" Text="BFM BUSINESS" />
+			<Rectangle Fill="{StaticResource ApplicationBackground}" VerticalAlignment="Bottom" Margin="0,0,0,-2" Height="4" />
+		</Grid>
+
+		<Grid Grid.Column="1" Grid.Row="1">
+			<Rectangle Fill="{StaticResource ApplicationBackground}" Height="37" VerticalAlignment="Top" />
+			<phone:Pivot SelectionChanged="OnPivotSelectionChanged">
+				<phone:Pivot.HeaderTemplate>
+					<DataTemplate>
+						<TextBlock Grid.Column="0" Text="{Binding}" Foreground="White" FontSize="26" Margin="-4,-12,8,0" FontFamily="Segoe UI Semibold" />
+					</DataTemplate>
+				</phone:Pivot.HeaderTemplate>
+				<phone:PivotItem Header="PARAMÈTRES" Margin="0,4,0,0">
+					<ScrollViewer>
+						<StackPanel Margin="0,8">
+							<toolkit:ListPicker Margin="0,4" Header="Affichage des sections" x:Name="PanelModePicker" SelectionChanged="OnSelectionChanged">
+								<sys:String>Mode surimpression (d&#233;faut)</sys:String>
+								<sys:String>Mode colonne unique</sys:String>
+								<sys:String>Mode grille</sys:String>
+								<sys:String>Mode liste - façon Facebook</sys:String>
+							</toolkit:ListPicker>
+							<toolkit:ListPicker Margin="0,4" Header="Taille de la police" x:Name="TextLevelPicker" SelectionChanged="OnSelectionChanged">
+								<sys:String>Petite</sys:String>
+								<sys:String>Moyenne</sys:String>
+								<sys:String>Grande</sys:String>
+							</toolkit:ListPicker>
+							<toolkit:ListPicker Margin="0,4" Header="Qualité des vidéos" x:Name="MediaQualityPicker" SelectionChanged="OnSelectionChanged">
+								<sys:String>Basse</sys:String>
+								<sys:String>Moyenne</sys:String>
+								<sys:String>Bonne</sys:String>
+								<sys:String>Excellente</sys:String>
+							</toolkit:ListPicker>
+							<toolkit:ToggleSwitch Margin="0,4" Header="Charger les articles à la UNE" Content="Désactivé" x:Name="LoadHeadlinesCheck" Checked="OnCheckChanged" Unchecked="OnCheckChanged" Click="OnReloadingIsRequiredClick" />
+							<toolkit:ToggleSwitch Margin="0,4" Header="Utiliser le thème sombre" Content="Désactivé" x:Name="DarkThemeCheck" Checked="OnCheckChanged" Unchecked="OnCheckChanged" Click="OnReloadingIsRequiredClick" />
+							<toolkit:ToggleSwitch Margin="0,4" Header="Garder les menus visible" Content="Désactivé" x:Name="ExpandMenuCheck" Checked="OnCheckChanged" Unchecked="OnCheckChanged" />
+							<toolkit:ToggleSwitch Margin="0,4" Header="Activer la compression" Content="Désactivée" x:Name="UseCompressionCheck" Checked="OnCheckChanged" Unchecked="OnCheckChanged" />
+							<TextBlock Margin="20" FontFamily="Segoe UI" TextWrapping="Wrap" TextAlignment="Center" Opacity=".6" Text="La compression ne concerne que les échanges de données brutes.&#13;Cette option n'a aucun effet sur les images et les vidéos." />
+						</StackPanel>
+					</ScrollViewer>
+				</phone:PivotItem>
+				<phone:PivotItem Header="NOTIFICATIONS" Margin="0,4,0,0">
+					<ScrollViewer>
+						<StackPanel Margin="0,8">
+							<toolkit:ToggleSwitch Margin="0,4" Header="Activer les tuiles dynamiques" Content="Désactivée" x:Name="DynamicsTileCheck" Checked="OnCheckChanged" Unchecked="OnCheckChanged" />
+							<toolkit:ListPicker Margin="0,4" Header="Activer les notifications Toast" x:Name="NotificationsPicker" SelectionChanged="OnSelectionChanged">
+								<sys:String>D&#233;sactiv&#233;</sys:String>
+								<sys:String>Toutes les heures</sys:String>
+								<sys:String>Toutes les 2 heures</sys:String>
+								<sys:String>Toutes les 4 heures</sys:String>
+							</toolkit:ListPicker>
+							<TextBlock Margin="20" FontFamily="Segoe UI" TextWrapping="Wrap" TextAlignment="Center" Opacity=".6" Text="Les notifications ne concernent que l'arrivé de nouveaux articles publiés après la dernière fermeture de l'app, tout comme les notifications.&#13;&#13;Pour les tuiles dynamiques, la vérification est effectuée toutes les 30 minutes environ." />
+						</StackPanel>
+					</ScrollViewer>
+				</phone:PivotItem>
+				<phone:PivotItem Header="A PROPOS DE ..." Margin="0,4,0,0">
+					<ScrollViewer>
+						<Grid Margin="0,16">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="10" />
+								<RowDefinition Height="*" />
+							</Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" FontSize="24" Margin="16" Text="Version X.X.X.X" x:Name="VersionLabel" />
+							<TextBlock Grid.Row="1" FontSize="24" Margin="16" Text="Les apps de l'auteur :" />
+							<Grid Grid.Row="3">
+								<Grid x:Name="LoadingBlock" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,40">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="4" />
+										<RowDefinition Height="auto" />
+									</Grid.RowDefinitions>
+									<toolkit:PerformanceProgressBar Grid.Row="0" x:Name="ProgressBar" Foreground="White" />
+									<TextBlock Grid.Row="1" FontFamily="Segoe UI" FontSize="20" Foreground="White" TextAlignment="Center" Margin="0,8,0,0" Text="Lecture du Store..." />
+								</Grid>
+								<toolkit:WrapPanel x:Name="AppsBlock" Margin="12,12,0,0" Visibility="Collapsed">
+									<localControls:AppButton Source="/Images/Apps/3a5a8854-86ea-487c-9e01-888f36fba1d2.png" Tag="3a5a8854-86ea-487c-9e01-888f36fba1d2" Content="01Net Mobile"  />
+									<localControls:AppButton Source="/Images/Apps/ddd5c9cd-881a-4363-b2bf-de9a3f867813.png" Tag="ddd5c9cd-881a-4363-b2bf-de9a3f867813" Content="01Business"    />
+									<localControls:AppButton Source="/Images/Apps/bc413ff0-27d0-4a01-820d-4d617de71960.png" Tag="bc413ff0-27d0-4a01-820d-4d617de71960" Content="BFM Actus"     />
+									<localControls:AppButton Source="/Images/Apps/a842d29f-febe-4b40-ad7c-b74977a697d6.png" Tag="a842d29f-febe-4b40-ad7c-b74977a697d6" Content="BFM Business"  />
+									<localControls:AppButton Source="/Images/Apps/5571947e-efe9-4797-8ce8-cdd7923d58ef.png" Tag="5571947e-efe9-4797-8ce8-cdd7923d58ef" Content="Clubic Mobile" />
+									<localControls:AppButton Source="/Images/Apps/634800d3-2967-4ea1-a965-f5f5ddbb4309.png" Tag="634800d3-2967-4ea1-a965-f5f5ddbb4309" Content="France Infos"  />
+									<localControls:AppButton Source="/Images/Apps/57078a84-0f9e-4149-9f9e-cae7eecbdf10.png" Tag="57078a84-0f9e-4149-9f9e-cae7eecbdf10" Content="France Inter"  />
+									<localControls:AppButton Source="/Images/Apps/fa9394c2-2384-4554-9f10-ed4de24f655d.png" Tag="fa9394c2-2384-4554-9f10-ed4de24f655d" Content="Next INpact"   />
+									<localControls:AppButton Source="/Images/Apps/983d3b0f-b670-41f4-b640-c8e236429f80.png" Tag="983d3b0f-b670-41f4-b640-c8e236429f80" Content="ZDNet Mobile"  />
+									<localControls:AppButton Source="/Images/Apps/ea4e95f6-6ad0-4e51-9cc2-6327ace990e6.png" Tag="ea4e95f6-6ad0-4e51-9cc2-6327ace990e6" Content="ZDNet News"    />
+								</toolkit:WrapPanel>
+							</Grid>
+						</Grid>
+					</ScrollViewer>
+				</phone:PivotItem>
+			</phone:Pivot>
+		</Grid>
+
+		<Rectangle x:Name="AppLeftBar"   Grid.Column="0" Grid.RowSpan="3" Margin="0,0,-1,0" Fill="#FF1F1F1F" Width="{Binding Path=ApplicationBarHeight, Source={StaticResource DeviceInfos}}" Visibility="Collapsed" />
+		<Rectangle x:Name="RightAppBar"  Grid.Column="2" Grid.RowSpan="3" Margin="-1,0,0,0" Fill="#FF1F1F1F" Width="{Binding Path=ApplicationBarHeight, Source={StaticResource DeviceInfos}}" Visibility="Collapsed" />
+		<Rectangle x:Name="BottomAppBar" Grid.Column="1" Grid.Row="2"                       Fill="#FF1F1F1F" Height="{Binding Path=ApplicationBarHeight, Source={StaticResource DeviceInfos}}" />
+
+	</Grid>
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default" Opacity=".999" BackgroundColor="#FF1F1F1F" ForegroundColor="White">
+			<shell:ApplicationBarIconButton Text="retour"          IconUri="/Images/Application/left.png"     Click="OnReturnButtonClick" />
+			<shell:ApplicationBarIconButton Text="donner mon avis" IconUri="/Images/Application/rate.png"     Click="OnRateButtonClick" />
+			<shell:ApplicationBarIconButton Text="feedback"        IconUri="/Images/Application/feedback.png" Click="OnFeedbackButtonClick" />
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

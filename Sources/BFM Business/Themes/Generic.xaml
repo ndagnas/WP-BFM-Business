@@ -1,0 +1,246 @@
+﻿<ResourceDictionary
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+		xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+		xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+   		xmlns:systemWindowsPhoneControls="clr-namespace:System.Windows.Phone.Controls">
+
+	<!-- SYSTEM.WINDOWS.PHONE.CONTROLS -->
+
+	<!-- ApplicationButton -->
+
+	<Style TargetType="systemWindowsPhoneControls:ApplicationButton">
+		<Setter Property="Width" Value="72"/>
+		<Setter Property="Height" Value="72"/>
+		<Setter Property="Thickness" Value="4"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:ApplicationButton">
+					<Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CacheMode="BitmapCache" Background="Transparent">
+						<Grid Width="{TemplateBinding InnerWidth}" Height="{TemplateBinding InnerHeight}" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<Ellipse Stroke="White" StrokeThickness="{TemplateBinding Thickness}" Width="{TemplateBinding InnerWidth}" Height="{TemplateBinding InnerHeight}" />
+							<Image Width="{TemplateBinding InnerWidth}" Height="{TemplateBinding InnerHeight}" Source="{TemplateBinding Source}" />
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- ChromeButton -->
+
+	<Style TargetType="systemWindowsPhoneControls:ChromeButton">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:ChromeButton">
+					<Grid CacheMode="BitmapCache" Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<ColorAnimation Duration="0" To="Transparent" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBackground" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<ColorAnimation Duration="0" To="Transparent" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBackground" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ColorAnimation Duration="0" To="#4F000000" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonBackground" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border Margin="{TemplateBinding Padding}">
+							<Border x:Name="ButtonBackground" Background="Transparent" CornerRadius="4">
+								<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+									<Image Source="{TemplateBinding Source}" />
+								</Grid>
+							</Border>
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- CustomMessageBox -->
+
+	<Style TargetType="systemWindowsPhoneControls:CustomMessageBox">
+		<Setter Property="VerticalAlignment" Value="Top"/>
+		<Setter Property="HorizontalContentAlignment" Value="Left"/>
+		<Setter Property="VerticalContentAlignment" Value="Top"/>
+		<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+		<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+		<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+		<Setter Property="Background" Value="{StaticResource PhoneChromeBrush}"/>
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:CustomMessageBox">
+					<Grid Background="{TemplateBinding Background}" HorizontalAlignment="Stretch">
+						<Grid Width="480" HorizontalAlignment="Left">
+							<Grid Margin="24" x:Name="ContentBlock">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<StackPanel Grid.ColumnSpan="2" Margin="0,-12,0,24">
+									<TextBlock x:Name="TitleTextBlock" Text="{TemplateBinding Title}" Foreground="{TemplateBinding Foreground}" Visibility="Collapsed" Margin="0,20,0,0" FontFamily="{StaticResource PhoneFontFamilySemiBold}"/>
+									<TextBlock x:Name="CaptionTextBlock" Text="{TemplateBinding Caption}" Foreground="{TemplateBinding Foreground}" Visibility="Collapsed" Margin="0,20,0,0" FontFamily="{StaticResource PhoneFontFamilySemiBold}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+									<TextBlock x:Name="MessageTextBlock" Text="{TemplateBinding Message}" Foreground="{TemplateBinding Foreground}" Margin="0,16,0,0" Visibility="Collapsed" FontFamily="{StaticResource PhoneFontFamilySemiLight}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+									<ContentPresenter Margin="0,20,0,0" />
+								</StackPanel>
+								<Button x:Name="LeftButton"  Grid.Row="1" Grid.Column="0" Content="{TemplateBinding LeftButtonContent}"  FontFamily="{StaticResource PhoneFontFamilyNormal}" IsEnabled="{Binding IsLeftButtonEnabled}"  Foreground="{TemplateBinding Foreground}" Margin="-12,0,0,-12" Padding="0,2,0,6" Visibility="Collapsed" BorderThickness="2" toolkit:TiltEffect.IsTiltEnabled="True"/>
+								<Button x:Name="RightButton" Grid.Row="1" Grid.Column="1" Content="{TemplateBinding RightButtonContent}" FontFamily="{StaticResource PhoneFontFamilyNormal}" IsEnabled="{Binding IsRightButtonEnabled}" Foreground="{TemplateBinding Foreground}" Margin="0,0,-12,-12" Padding="0,2,0,6" Visibility="Collapsed" BorderThickness="2" toolkit:TiltEffect.IsTiltEnabled="True"/>
+							</Grid>
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- FacebookControl -->
+
+	<Style TargetType="systemWindowsPhoneControls:FacebookControl">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:FacebookControl">
+					<Grid x:Name="PanelsContainer">
+						<Border x:Name="LeftPanel" Background="#FF31353E" HorizontalAlignment="Left" Margin="-440,0,0,0" MinWidth="100" MaxWidth="440" Child="{TemplateBinding LeftContent}">
+							<Border.Projection>
+								<PlaneProjection/>
+							</Border.Projection>
+						</Border>
+						<Border x:Name="RightPanel" Background="#FF31353E" HorizontalAlignment="Right" Margin="0,0,-440,0" MinWidth="100" MaxWidth="440" Child="{TemplateBinding RightContent}">
+							<Border.Projection>
+								<PlaneProjection/>
+							</Border.Projection>
+						</Border>
+						<Border x:Name="CenterPanel" Background="White" Child="{TemplateBinding Content}">
+							<Border.Projection>
+								<PlaneProjection/>
+							</Border.Projection>
+						</Border>
+						<Border x:Name="OverridePanel" Background="Transparent" Visibility="Collapsed" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- FacebookItem -->
+
+	<Style TargetType="systemWindowsPhoneControls:FacebookItem">
+		<Setter Property="ClickDelay" Value="0:0:0.2"/>
+		<Setter Property="Padding" Value="8,12"/>
+		<Setter Property="FontSize" Value="22"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:FacebookItem">
+					<Grid Margin="{TemplateBinding Padding}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Rectangle Grid.Column="0" Height="12" Width="12" Fill="{TemplateBinding Background}" Margin="0,2,12,0" />
+						<TextBlock Grid.Column="1" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Title}" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- FacebookTile -->
+
+	<Style TargetType="systemWindowsPhoneControls:FacebookTile">
+		<Setter Property="Height" Value="108"/>
+		<Setter Property="Width" Value="214"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="Margin" Value="4,4,0,0"/>
+		<Setter Property="Padding" Value="0,0,2,2"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:FacebookTile">
+					<systemWindowsPhoneControls:DelayedButton ClickDelay="0:0:0.2" x:Name="ButtonControl" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" CacheMode="BitmapCache">
+						<Grid  Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="Transparent">
+							<Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{TemplateBinding Background}">
+								<TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,4,0,0" Text="{TemplateBinding Title}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" TextWrapping="Wrap" TextTrimming="WordEllipsis" />
+								<Image Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Source="{TemplateBinding Source}" Margin="{TemplateBinding Padding}" />
+							</Grid>
+						</Grid>
+					</systemWindowsPhoneControls:DelayedButton>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- ImageViewer -->
+
+	<Style TargetType="systemWindowsPhoneControls:ImageViewer">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:ImageViewer">
+					<Grid Background="{TemplateBinding Background}">
+						<TextBlock x:Name="LoadingMessage" Text="{TemplateBinding LoadingMessage}" Foreground="#FFBFBFBF" FontWeight="Bold" FontStyle="Italic" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+						<TextBlock x:Name="ErrorMessage" Text="chargement de l'apperçu..." Foreground="#FFBFBFBF" FontWeight="Bold" FontStyle="Italic" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed" />
+						<Grid x:Name="Root">
+							<Image x:Name="Image" Source="{TemplateBinding Source}" CacheMode="BitmapCache" Visibility="Collapsed" />
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- TileButton -->
+
+	<Style TargetType="systemWindowsPhoneControls:TileButton">
+		<Setter Property="Height" Value="108"/>
+		<Setter Property="Width" Value="214"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="Margin" Value="4,4,0,0"/>
+		<Setter Property="Padding" Value="0,0,2,2"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="systemWindowsPhoneControls:TileButton">
+					<systemWindowsPhoneControls:DelayedButton ClickDelay="0:0:0.2" x:Name="ButtonControl" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" CacheMode="BitmapCache">
+						<Grid  Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="Transparent">
+							<Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{TemplateBinding Background}" x:Name="Tile">
+								<Grid.Resources>
+									<Storyboard x:Name="OpenAnimation">
+										<DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="Tile">
+											<EasingDoubleKeyFrame KeyTime="0" Value="-120"/>
+											<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+									<Storyboard x:Name="CloseAnimation">
+										<DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="Tile">
+											<EasingDoubleKeyFrame KeyTime="0" Value="-120"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</Grid.Resources>
+								<Grid.Projection>
+									<PlaneProjection CenterOfRotationX=".5" RotationX="-120" />
+								</Grid.Projection>
+								<TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,4,0,0" Text="{TemplateBinding Title}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" TextWrapping="Wrap" TextTrimming="WordEllipsis" />
+								<Image Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Source="{TemplateBinding Source}" Margin="{TemplateBinding Padding}" />
+							</Grid>
+						</Grid>
+					</systemWindowsPhoneControls:DelayedButton>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>

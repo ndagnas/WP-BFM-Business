@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
+  <DefaultLanguage xmlns="" code="fr-FR" />
+  <App xmlns="" ProductID="{00000000-0000-0000-0000-000000000000}" Title="BFM Business" RuntimeType="Silverlight" Version="2.3.1.0" Genre="apps.normal" Author="Nicolas Dagnas" Description="BFM Business pour Windows Phone" Publisher="Nicolas Dagnas" PublisherID="{00000000-0000-0000-0000-000000000000}">
+    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
+      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
+      <Capability Name="ID_CAP_SENSORS" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="Frames/Frm_Home.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="BFM Business Scheduler Agent" Source="SchedulerAgent" Type="NextRadio.Scheduler.ScheduledAgent" LaunchOnBoot="true" />
+      </ExtendedTask>
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="BFMBusinessToken" TaskName="_default">
+        <TemplateFlip>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipTileSmall.png</SmallImageURI>
+          <Count>0</Count>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipTileMedium.png</BackgroundImageURI>
+          <Title>
+          </Title>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI>
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipTileWide.png</LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
+          <DeviceLockImageURI>
+          </DeviceLockImageURI>
+          <HasLarge>True</HasLarge>
+        </TemplateFlip>
+      </PrimaryToken>
+    </Tokens>
+    <Extensions>
+      <Extension ExtensionName="LockScreen_Notification_TextField" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
+    </Extensions>
+    <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+    </ScreenResolutions>
+  </App>
+</Deployment>
